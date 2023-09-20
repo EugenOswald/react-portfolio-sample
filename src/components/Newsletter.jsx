@@ -6,14 +6,15 @@ const Newsletter = ({ onValidated, status, message }) => {
 
 	useEffect(() => {
 		if (status === 'success') clearFields();
-	});
+	}, [status]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		email && email.indexOf('@') > -1 && onValidated;
-		({
-			EMAIL: email,
-		});
+		if (email && email.indexOf('@') > -1) {
+			onValidated({
+				EMAIL: email,
+			});
+		}
 	};
 
 	const clearFields = () => {
